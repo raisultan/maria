@@ -1,4 +1,4 @@
-name: "Maria"
+name: "Maria - isort and black checks"
 description: "GH action providing isort and black checks on changed files of PR"
 branding:
   icon: circle
