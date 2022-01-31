@@ -1,0 +1,11 @@
+name: "Maria"
+description: "GH action providing isort and black checks on changed files of PR"
+branding:
+  icon: box
+  color: gray-dark
+outputs:
+  output:
+    description: "Passes if isort and black checks succeed"
+runs:
+  using: "docker"
+  image: "Dockerfile"
