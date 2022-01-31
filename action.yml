@@ -1,7 +1,7 @@
 name: "Maria"
 description: "GH action providing isort and black checks on changed files of PR"
 branding:
-  icon: box
+  icon: circle
   color: gray-dark
 outputs:
   output:
