@@ -1,5 +1,5 @@
 ```yml
-name: Codestyle check
+name: Code style check
 
 on:
   pull_request:
