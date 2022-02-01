@@ -6,5 +6,5 @@ RUN apt install -y curl jq build-essential
 ADD requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
