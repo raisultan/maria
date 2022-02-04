@@ -1,6 +1,6 @@
 FROM python:3-slim
 
-RUN apt update && apt -y upgrade && apt-get install -y --no-install-recommends git
+RUN apt update && apt -y upgrade
 RUN apt install -y curl jq build-essential
 
 ADD requirements.txt /requirements.txt
