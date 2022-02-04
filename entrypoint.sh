@@ -31,9 +31,9 @@ else
 fi
 
 echo "Branch name is"
-echo "${GITHUB_REF}"
-echo "${GITHUB_REF##*/}"
-git checkout "${GITHUB_REF##*/}"
+echo "${BASE_BRANCH}"
+echo "${BASE_BRANCH}"
+git checkout "${BASE_BRANCH}"
 git status
 git diff --name-only --diff-filter=d master | grep ".py$"
 
