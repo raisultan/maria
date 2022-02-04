@@ -33,6 +33,13 @@ else
     line_length="${LINE_LENGTH}"
 fi
 
+echo "Branch name is"
+${GITHUB_REF}
+${GITHUB_REF##*/}
+git checkout ${GITHUB_REF##*/}
+git status
+git diff --name-only --diff-filter=d master | grep ".py$"
+
 echo "Running isort"
 isort --check-only --quiet ${python_files}
 echo "Running black"
