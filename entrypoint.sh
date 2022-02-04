@@ -18,7 +18,8 @@ github_pr_url=`sed -e 's/^"//' -e 's/"$//' <<<"$github_pr_url"`
 
 echo "Looking for diff at ${github_pr_url}"
 curl --request GET --url ${github_pr_url} --header "authorization: Bearer ${GITHUB_TOKEN}" --header "Accept: application/vnd.github.v3.diff" > github_diff.txt
-python_files=`cat github_diff.txt | grep -E -- "\+\+\+ |\-\-\- " | awk '{print $2}' | grep -Po -- "(?<=[ab]/).+\.py/n(?<=[ab]/).+\.py$"`
+python remove_deleted.py
+python_files=`cat github_diff.txt | grep -E -- "\+\+\+ |\-\-\- " | awk '{print $2}' | grep -Po -- "(?<=[ab]/).+\.py$"`
 echo "Changed files: ${python_files}"
 
 if [[ -z "${LINE_LENGTH}" ]]; then
@@ -31,5 +32,3 @@ echo "Running isort"
 isort --check-only --quiet ${python_files}
 echo "Running black"
 black --line-length ${line_length} --check ${python_files}
-
-(?m)^(.*)$(?=\n^\+\+\+ \/dev\/null)
