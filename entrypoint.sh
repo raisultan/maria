@@ -18,9 +18,8 @@ github_pr_url=`sed -e 's/^"//' -e 's/"$//' <<<"$github_pr_url"`
 
 echo "Looking for diff at ${github_pr_url}"
 curl --request GET --url ${github_pr_url} --header "authorization: Bearer ${GITHUB_TOKEN}" --header "Accept: application/vnd.github.v3.diff" > github_diff.txt
-diff_length=`wc -l github_diff.txt`
+grep -v "+++ /dev/null" github_diff.txt > temp_replace; mv temp_replace github_diff.txt
 
-echo "Approximate diff size: ${diff_length}"
 python_files=`cat github_diff.txt | grep -E -- "\+\+\+ |\-\-\- " | awk '{print $2}' | grep -Po -- "(?<=[ab]/).+\.py$"`
 echo "Changed files: ${python_files}"
 
@@ -30,14 +29,9 @@ else
     line_length="${LINE_LENGTH}"
 fi
 
-echo "Branch name is"
-echo "${BASE_BRANCH}"
-echo "${BASE_BRANCH}"
-git checkout "${BASE_BRANCH}"
-git status
-git diff --name-only --diff-filter=d master | grep ".py$"
-
 echo "Running isort"
 isort --check-only --quiet ${python_files}
 echo "Running black"
 black --line-length ${line_length} --check ${python_files}
+
+(?m)^(.*)$(?=\n^\+\+\+ \/dev\/null)
