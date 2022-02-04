@@ -19,6 +19,7 @@ github_pr_url=`sed -e 's/^"//' -e 's/"$//' <<<"$github_pr_url"`
 echo "Looking for diff at ${github_pr_url}"
 curl --request GET --url ${github_pr_url} --header "authorization: Bearer ${GITHUB_TOKEN}" --header "Accept: application/vnd.github.v3.diff" > github_diff.txt
 
+# a bit of black magic to remove deleted files
 rem_del=`cat <<EOF
 def remove_deleted(fn):
     with open(fn, "rt") as fin:
