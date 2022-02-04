@@ -29,6 +29,11 @@ else
     line_length="${LINE_LENGTH}"
 fi
 
+echo "Current branch is"
+git status
+echo "Diff list\n"
+git diff --name-only --diff-filter=d master | grep ".py$"
+
 echo "Running isort"
 isort --check-only --quiet ${python_files}
 echo "Running black"
