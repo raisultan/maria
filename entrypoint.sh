@@ -20,7 +20,7 @@ echo "Looking for diff at ${github_pr_url}"
 curl --request GET --url ${github_pr_url} --header "authorization: Bearer ${GITHUB_TOKEN}" --header "Accept: application/vnd.github.v3.diff" > github_diff.txt
 grep -v "+++ /dev/null" github_diff.txt > temp_replace; mv temp_replace github_diff.txt
 
-python_files=`cat github_diff.txt | grep -E -- "\+\+\+ |\-\-\- " | awk '{print $2}' | grep -Po -- "(?<=[ab]/).+\.py$"`
+python_files=`cat github_diff.txt | grep -E -- "\+\+\+ |\-\-\- " | awk '{print $2}' | grep -Po -- "(?<=[ab]/).+\.py/n(?<=[ab]/).+\.py$"`
 echo "Changed files: ${python_files}"
 
 if [[ -z "${LINE_LENGTH}" ]]; then
