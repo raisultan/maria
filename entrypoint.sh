@@ -47,4 +47,4 @@ fi
 echo "Running isort"
 isort --check-only --quiet ${python_files}
 echo "Running black"
-black --line-length ${line_length} --check ${python_files}
+black --line-length ${line_length} --check --diff ${python_files}
