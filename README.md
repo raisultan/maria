@@ -1,3 +1,8 @@
+## Maria
+### Description
+Github Action providing isort and black checks on changed files of PR.
+
+### Example
 ```yml
 name: Code style check
 
