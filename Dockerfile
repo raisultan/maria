@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.7-slim
 
 RUN apt update && apt -y upgrade
 RUN apt install -y curl jq build-essential
