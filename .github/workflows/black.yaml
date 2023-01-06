@@ -25,10 +25,7 @@ jobs:
       - name: Install black and reorder-python-imports
         run: pip install isort==5.10.1 black==22.3.0
 
-      - name: ISort
+      - name: ISort and Black
         run: |
-          isort --check-only --quiet ${{ steps.changed-files.outputs.all_changed_files }}
-
-      - name: Black and Sort changed files
-        run: |
-          black --check -S --line-length 120 ${{ steps.changed-files.outputs.all_changed_files }}
+          isort --check-only --quiet --diff ${{ steps.changed-files.outputs.all_changed_files }}
+          black --check -S --line-length 120 --diff ${{ steps.changed-files.outputs.all_changed_files }}
