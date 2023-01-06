@@ -50,3 +50,5 @@ class AdvertViewCountService:
             user_agent=request.META.get('HTTP_USER_AGENT', ''),
             session_key=request.session.session_key,
         )
+
+'hello'
