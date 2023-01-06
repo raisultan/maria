@@ -25,9 +25,10 @@ jobs:
       - name: Install black and reorder-python-imports
         run: pip install black reorder-python-imports
 
+      - name: ISort
+        run: |
+          isort --check-only --quiet ${{ steps.changed-files.outputs.all_changed_files }}
+
       - name: Black and Sort changed files
         run: |
-          reorder-python-imports ${{ steps.changed-files.outputs.all_changed_files }}
-
-      - name: Run black on full codebase
-        uses: psf/black@stable
+          black --check -S --line-length 120 ${{ steps.changed-files.outputs.all_changed_files }}
