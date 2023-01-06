@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-python@v3
 
       - name: Install black and reorder-python-imports
-        run: pip install black reorder-python-imports
+        run: pip install isort==5.10.1 black==22.3.0
 
       - name: ISort
         run: |
